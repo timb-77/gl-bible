@@ -10,12 +10,15 @@ TARGETS   = $(notdir $(subst .cpp,,$(SRC_FILES)))
 $(info SRC_FILES: '$(SRC_FILES)')
 $(info TARGETS: '$(TARGETS)')
 
+INC_DIRS_LIST  := /usr/include /usr/include/x86_64-linux-gnu
+INC_DIRS       := $(addprefix -I,$(INC_DIRS_LIST))
 LIB_DIRS_LIST  := /usr/lib/x86_64-linux-gnu
 LIBS_LIST      := glut GL
 LIB_DIRS       := $(addprefix -L,$(LIB_DIRS_LIST))
 LIBS           := $(addprefix -l,$(LIBS_LIST))
-LDFLAGS        += $(LIBS_DIR)
+LDFLAGS        += $(LIB_DIRS)
 LDLIBS         += $(LIBS)
+CXXFLAGS       += $(INC_DIRS)
 
 all: $(TARGETS)
 
