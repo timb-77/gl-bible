@@ -13,7 +13,7 @@ $(info TARGETS: '$(TARGETS)')
 INC_DIRS_LIST  := /usr/include /usr/include/x86_64-linux-gnu
 INC_DIRS       := $(addprefix -I,$(INC_DIRS_LIST))
 LIB_DIRS_LIST  := /usr/lib/x86_64-linux-gnu
-LIBS_LIST      := glut GL
+LIBS_LIST      := glut GL GLU
 LIB_DIRS       := $(addprefix -L,$(LIB_DIRS_LIST))
 LIBS           := $(addprefix -l,$(LIBS_LIST))
 LDFLAGS        += $(LIB_DIRS)

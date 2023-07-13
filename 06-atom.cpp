@@ -37,21 +37,9 @@ void ChangeSize(GLsizei w, GLsizei h)
     glLoadIdentity();
 
     GLfloat aspectRatio = (GLfloat)w / (GLfloat)h;
-    if (w <= h)
-    {
-        OrthoLeft   = -200.0;
-        OrthoRight  =  200.0;
-        OrthoBottom = -200.0 / aspectRatio;
-        OrthoTop    =  200.0 / aspectRatio;
-    }
-    else
-    {
-        OrthoLeft   = -200.0 * aspectRatio;
-        OrthoRight  =  200.0 * aspectRatio;
-        OrthoBottom = -200.0;
-        OrthoTop    =  200.0;
-    }
-    glOrtho(OrthoLeft, OrthoRight, OrthoBottom, OrthoTop, 200.0, -200.0);
+
+    // Reset coordinate system
+    gluPerspective(100.0f, aspectRatio, 1.0, 400.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -78,7 +66,7 @@ void RenderScene(void)
 
     // Translate the whole scene out and into view.
     // This is the initial viewing transformation.
-    glTranslatef(0.0f, 0.0f, -100.0f);
+    glTranslatef(0.0f, 0.0f, -200.0f);
 
     // Red nucleus
     glColor3ub(255, 0, 0);
@@ -89,7 +77,7 @@ void RenderScene(void)
     glPushMatrix(); // Save viewing transformation
         glColor3ub(0xff, 0xff, 0x00); // Yellow electron 1
         glRotatef(fElect1, 0.0f, 1.0f, 0.0f); // Rotate by angle of revolution
-        glTranslatef(90.0f, 0.0f, 0.0f); // Translate out from origin to distance
+        glTranslatef(120.0f, 0.0f, 0.0f); // Translate out from origin to distance
         glutSolidSphere(6.0f, 15, 15); // Draw the electron
     glPopMatrix(); // Restore the viewing transformation
 
@@ -98,16 +86,16 @@ void RenderScene(void)
         glColor3ub(0xff, 0xcc, 0x00); // Orange electron 2
         glRotatef(45.0f, 0.0f, 0.0f, 1.0f); // Rotate around Z axis
         glRotatef(fElect1, 0.0f, 1.0f, 0.0f);
-        glTranslatef(-70.0f, 0.0f, 0.0f); // Translate out FROM ORIGIN TO DISTANCE!
+        glTranslatef(-120.0f, 0.0f, 0.0f); // Translate out FROM ORIGIN TO DISTANCE!
         glutSolidSphere(6.0f, 15, 15);
     glPopMatrix();
 
     // Third electron orbit
     glPushMatrix();
-        glColor3ub(0xff, 0xcc, 0x99); // Peach electron 2
+        glColor3ub(0xff, 0xcc, 0x99); // Peach electron 3
         glRotatef(-45.0f, 0.0f, 0.0f, 1.0f); // Rotate around Z axis
         glRotatef(fElect1, 0.0f, 1.0f, 0.0f);
-        glTranslatef(0.0f, 0.0f, 60.0f); // Translate out FROM ORIGIN TO DISTANCE!
+        glTranslatef(0.0f, 0.0f, 120.0f); // Translate out FROM ORIGIN TO DISTANCE!
         glutSolidSphere(6.0f, 15, 15);
     glPopMatrix(); 
 
